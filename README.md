@@ -1,4 +1,4 @@
-# Bean Validation 在资产服务系统中的应用
+# Bean Validation 的应用
 在任何时候，我们的应用程序要处理一个的业务逻辑，数据校验是我们必须要考虑和面对的事情；它会出现在我们应用程序的许多不同层中，从表示层到持久层。很多时候，必须在每个层中实施完全相同的验证，这既耗时又容易出错。为了避免必须在每一层重新实现这些验证，许多开发人员会将验证的代码直接复制粘贴到其类中，从而使它们重复并且杂乱无章。(此时打开代码AssetManageServiceImpl#receiveAsset)
 
 Bean Validation 是一个运行时的数据验证框架，在验证之后验证的错误信息会被马上返回(此时打开代码MakeLoanController#makeLoanPlus)
