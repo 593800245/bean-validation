@@ -1,5 +1,6 @@
 package com.share.ao;
 
+import com.google.common.collect.Lists;
 import com.share.util.PrintUtil;
 import com.share.util.ValidatorUtil;
 import org.junit.Test;
@@ -16,6 +17,7 @@ public class RequestAOTest {
 //        requestAO.setEmail("假的邮箱");
         requestAO.setEmail("");
         requestAO.setFullName("");
+        requestAO.setTargetSources(Lists.newArrayList("test"));
         PrintUtil.print(ValidatorUtil.validate(requestAO));
     }
 

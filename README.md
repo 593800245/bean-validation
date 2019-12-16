@@ -78,6 +78,7 @@ Bean Validation 是一个运行时的数据验证框架，在验证之后验证�
 * [SpringMVC中实现Bean Validation(JSR 303 JSR 349 JSR 380)](https://www.cnblogs.com/passedbylove/p/11395911.html)
 * [Hibernate Validator:The Bean Validation reference implementation.](http://hibernate.org/validator/)
 * [当validatedBy为空时,HibernateValidator如何找到ConstraintValidator](http://www.voidcn.com/article/p-bjuuliuy-bws.html)
+* [Spring方法级别数据校验：@Validated + MethodValidationPostProcessor](http://www.mamicode.com/info-detail-2736166.html)
 
 
 

@@ -14,7 +14,7 @@ public enum PaySource {
 
     private final String type;
 
-    private PaySource(String type) {
+    PaySource(String type) {
         this.type = type;
     }
 
@@ -23,15 +23,5 @@ public enum PaySource {
         return this.type;
     }
 
-
-    public static PaySource judgeExit(String name) {
-
-        for (PaySource paySource : values()) {
-            if (name.equals(paySource.name())) {
-                return paySource;
-            }
-        }
-        return null;
-    }
 
 }
