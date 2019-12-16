@@ -1,6 +1,6 @@
 package com.share.util;
 
-import com.share.exception.AssetCommonException;
+import com.share.exception.MyCommonException;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.validation.ConstraintViolation;
@@ -18,7 +18,7 @@ public class ValidatorUtil {
     private static final Validator VALIDATOR = Validation.buildDefaultValidatorFactory().getValidator();
 
     private ValidatorUtil() {
-        
+
     }
 
     public static <T> void validateWithException(T t) {
@@ -38,7 +38,7 @@ public class ValidatorUtil {
                 log.debug("error.getRootBean():{}", error.getRootBean());
                 validateError.append(String.format("%s-%s ：[%s = %s] ;", "", error.getMessage(), error.getPropertyPath(), error.getInvalidValue()));
             }
-            throw new AssetCommonException(validateError.toString());
+            throw new MyCommonException(validateError.toString());
         }
     }
 
