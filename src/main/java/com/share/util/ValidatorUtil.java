@@ -1,11 +1,13 @@
 package com.share.util;
 
-import com.share.exception.AssetCommonException;
+import com.share.exception.MyCommonException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.FieldError;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -15,10 +17,10 @@ import java.util.Set;
 @Slf4j
 public class ValidatorUtil {
 
-    private static final Validator VALIDATOR = Validation.buildDefaultValidatorFactory().getValidator();
+    public static final Validator VALIDATOR = Validation.buildDefaultValidatorFactory().getValidator();
 
     private ValidatorUtil() {
-        
+
     }
 
     public static <T> void validateWithException(T t) {
@@ -36,9 +38,9 @@ public class ValidatorUtil {
                 log.debug("error.getMessageTemplate():{}", error.getMessageTemplate());
                 log.debug("error.getRootBeanClass():{}", error.getRootBeanClass());
                 log.debug("error.getRootBean():{}", error.getRootBean());
-                validateError.append(String.format("%s-%s ：[%s = %s] ;", "", error.getMessage(), error.getPropertyPath(), error.getInvalidValue()));
+                validateError.append(formatErrorMsg(error.getPropertyPath().toString(), error.getMessage(), error.getInvalidValue()));
             }
-            throw new AssetCommonException(validateError.toString());
+            throw new MyCommonException(validateError.toString());
         }
     }
 
@@ -46,5 +48,24 @@ public class ValidatorUtil {
         return VALIDATOR.validate(t);
     }
 
+    public static String formatErrorMsg(Set<ConstraintViolation<?>> set) {
+        StringBuilder validateError = new StringBuilder();
+        for (ConstraintViolation<?> error : set) {
+            validateError.append(formatErrorMsg(error.getPropertyPath().toString(), error.getMessageTemplate(), error.getInvalidValue()));
+        }
+        return validateError.toString();
+    }
+
+    public static String formatErrorMsg(List<FieldError> allErrors) {
+        StringBuilder validateError = new StringBuilder();
+        for (FieldError objectError : allErrors) {
+            validateError.append(formatErrorMsg(objectError.getField(), objectError.getDefaultMessage(), objectError.getRejectedValue()));
+        }
+        return validateError.toString();
+    }
+
+    private static String formatErrorMsg(String fieldName, String message, Object invalidValue) {
+        return String.format("[%s%s,invalidValue=%s] ;", fieldName, message, invalidValue);
+    }
 
 }
