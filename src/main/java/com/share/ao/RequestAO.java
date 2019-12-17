@@ -1,10 +1,11 @@
 package com.share.ao;
 
+import com.share.constant.Constant;
 import com.share.enums.PaySource;
 import com.share.validator.ValidEnum;
-import com.share.constant.Constant;
 import lombok.Data;
-import org.hibernate.validator.constraints.CodePointLength;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -115,27 +116,21 @@ public class RequestAO {
 
 
     // Hibernate Validator 扩展的约束（constraint）演示start
-    /**
-     * 全名
-     */
-    @CodePointLength(min = 1, max = 32)
-    private String fullName;
-//            CompositionType
-//    ConstraintComposition
-//            CreditCardNumber
-//    Currency
-//            EAN
-//ISBN
-//        Length
-//    LuhnCheck
-//            Mod10Check
-//    Mod11Check
-//ParameterScriptAssert
-//        Range
-//ScriptAssert
-//        UniqueElements
-//    URL
 
+    /**
+     * 合同编号
+     */
+    @Length(min = 8, max = 32)
+    private String contractCode;
+
+    /**
+     * 借款人年龄
+     * 两边都是闭区间
+     * 即age1必须大于等于22小于等于55
+     */
+    @Range(min = 22, max = 55)
+    @Positive(message = "必须是正数")
+    private Integer age1;
 
     // Hibernate Validator 扩展的约束（constraint）演示end
 
