@@ -16,7 +16,6 @@ public class RequestAOTest {
         RequestAO requestAO = new RequestAO();
 //        requestAO.setEmail("假的邮箱");
         requestAO.setEmail("");
-        requestAO.setFullName("");
         requestAO.setTargetSources(Lists.newArrayList("test"));
         requestAO.setAge1(56);
         PrintUtil.print(ValidatorUtil.validate(requestAO));
