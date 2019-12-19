@@ -35,6 +35,7 @@ public class ValidationController {
      * 演示spring的方法入参校验
      * 1、必须配置bean: MethodValidationPostProcessor
      * 2、类上必须加@Validated注解
+     * 3、注解必须支持用在方法入参中，即：ElementType.PARAMETER
      *
      * @param paySource 资金渠道
      * @return 通用返回报文

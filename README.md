@@ -43,9 +43,11 @@ Bean Validation 是一个运行时的数据验证框架，在验证之后验证�
 
 ## 使用这些约束（constraint）时有哪些坑
 0. 约束有类型的要求，但是在编译时无法做类型检查。示例 TypeCheckingAO
+1. 约束用在方法入参中，但是此约束并没有声明可以用在方法入参中而导致的约束不生效 ValidationController#pushToPaySource
 
 ## 不能解决什么问题
 * 依赖数据库的校验，如bean的某个属性必须和数据库中某个表的某个字段的值一致
+
 ## 自定义约束
 ### 自定义一个简单的约束需要哪些步骤
 * 创建一个约束注解
@@ -69,6 +71,10 @@ Bean Validation 是一个运行时的数据验证框架，在验证之后验证�
 ### 知道如何自定义约束注解，如何自查创建的是好的约束还是不太好的约束？
 * 反例 CollectionCompanyValidator
 * 正例 EnumValidator
+
+## 分组校验
+
+
 
 ## 与spring配合使用
 

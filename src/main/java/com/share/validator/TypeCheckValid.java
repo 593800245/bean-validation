@@ -8,17 +8,21 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 枚举值校验
- *故意去掉 ElementType.PARAMETER ，演示此注解用在方法入参中时不会生效
+ * 数值类型校验有效数字
+ *
  * @author guozhe
  */
-@Target({ElementType.FIELD, ElementType.METHOD, ElementType.TYPE_USE})
+@Target({ElementType.METHOD, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = {EnumValidator.class})
-public @interface ValidEnum {
-    String message() default "值不正确";
+@Constraint(validatedBy = {BigDecimalScaleValidator.class})
+public @interface TypeCheckValid {
+    String message() default "有效数字位数不正确";
 
-    Class<? extends Enum> value();
+    /**
+     * 最多允许的小数点后的有效数字位数
+     * 如金额最多只允许保留2位有效数字，则此值为2
+     */
+    int value();
 
     Class<?>[] groups() default {};
 

@@ -1,11 +1,11 @@
 package com.share.validator;
 
 import com.google.common.base.Joiner;
-import com.google.common.collect.Lists;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.util.List;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 /**
  * 枚举值校验
@@ -30,17 +30,11 @@ public class EnumValidator implements ConstraintValidator<ValidEnum, String> {
         if (null == value) {
             return true;
         }
-        List<String> values = Lists.newArrayList();
-        for (Enum resultStatus : enumClass.getEnumConstants()) {
-            values.add(resultStatus.name());
-        }
-        if (values.contains(value)) {
+        Enum[] enumConstants = enumClass.getEnumConstants();
+        if (Arrays.stream(enumConstants).map(Enum::name).collect(Collectors.toSet()).contains(value)) {
             return true;
         }
-        String defaultConstraintMessageTemplate = context.getDefaultConstraintMessageTemplate();
-        context.disableDefaultConstraintViolation();
-        context.buildConstraintViolationWithTemplate(String.format("%s%s%s%s", defaultConstraintMessageTemplate, "；正确的值包括：【", Joiner.on(",").join(values), "】"))
-                .addConstraintViolation();
+        MyConstraintUtil.changeConstraintMessageTemplate(context, "正确的值包括：【" + Joiner.on(",").join(enumConstants) + "】");
         return false;
     }
 
