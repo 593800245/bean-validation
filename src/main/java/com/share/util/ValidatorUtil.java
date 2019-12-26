@@ -48,6 +48,13 @@ public class ValidatorUtil {
         return VALIDATOR.validate(t);
     }
 
+    public static <T> Set<ConstraintViolation<T>> validate(T t, Class group) {
+        if (null != group) {
+            return VALIDATOR.validate(t, group);
+        }
+        return validate(t);
+    }
+
     public static String formatErrorMsg(Set<ConstraintViolation<?>> set) {
         StringBuilder validateError = new StringBuilder();
         for (ConstraintViolation<?> error : set) {
