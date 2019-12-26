@@ -10,7 +10,7 @@ public enum PaySource {
     /**
      * 你猜
      */
-    BUGAODUNI("你猜");
+    BUGAOSUNI("你猜");
 
     private final String type;
 

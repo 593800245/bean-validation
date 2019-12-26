@@ -48,6 +48,22 @@ public class ValidationController {
         return new TransOutput(TransOutput.SUCCESS_CODE, String.format("have push bid to %s", paySource));
     }
 
+    /**
+     * 演示入参直接指定对应的枚举类型;
+     * 定义接口时不建议使用这种方式，因为如果传错了值会报类型转换错误：
+     * java.lang.IllegalArgumentException: No enum constant com.share.enums.PaySource.***
+     * 接口定义可以使用上面的方法，使返回报文更友好，可控
+     *
+     * @param paySource 资金渠道
+     * @return 通用返回报文
+     */
+    @ResponseBody
+    @GetMapping(value = "/pushToPaySourceEnum")
+    public TransOutput pushToPaySourceEnum(@RequestParam("paySource") @NotNull PaySource paySource) {
+        log.info("push bid to paySource {}", paySource);
+        return new TransOutput(TransOutput.SUCCESS_CODE, String.format("have push bid to %s", paySource));
+    }
+
     @ResponseBody
     @PostMapping(value = "/receiveUser")
     public TransOutput receiveUser(@RequestBody @Valid UserAO user) {

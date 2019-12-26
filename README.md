@@ -70,7 +70,7 @@ Bean Validation 是一个运行时的数据验证框架，在验证之后验证�
 
 ### 知道如何自定义约束注解，如何自查创建的是好的约束还是不太好的约束？
 * 反例 CollectionCompanyValidator
-* 正例 EnumValidator
+* 正例 EnumValidator；演示：Person、ValidationController#pushToPaySource
 
 ## 分组校验
 * Student
@@ -80,6 +80,8 @@ Bean Validation 是一个运行时的数据验证框架，在验证之后验证�
 
 
 ## 与spring配合使用
+* 入参是基本数据类型的包装类校验：ValidationController#pushToPaySource
+* 入参是bean的校验：ValidationController#receiveUser
 
 # 参考资料
 * [深入了解数据校验：Bean Validation 2.0（JSR380）](https://segmentfault.com/a/1190000019828246)
