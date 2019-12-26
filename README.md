@@ -5,6 +5,9 @@ Bean Validation 是一个运行时的数据验证框架，在验证之后验证�
 
 从刚才的代码比较可以看出，Bean Validation可以极大的简化因校验而写的代码量，这就是今天和大家一起学习Bean Validation的原因。
 
+## 为什么使用？
+优雅
+
 ## 如何使用
 ### 项目中必须引用以下jar包
 ```xml
@@ -75,13 +78,13 @@ Bean Validation 是一个运行时的数据验证框架，在验证之后验证�
 ## 分组校验
 * Student
 
-
-## 那些写指定校验器为```@Constraint(validatedBy = { })```是如何找到对应的校验器的？
-
-
 ## 与spring配合使用
+### 原理？
+
 * 入参是基本数据类型的包装类校验：ValidationController#pushToPaySource
 * 入参是bean的校验：ValidationController#receiveUser
+
+## 那些写指定校验器为```@Constraint(validatedBy = { })```是如何找到对应的校验器的？
 
 # 参考资料
 * [深入了解数据校验：Bean Validation 2.0（JSR380）](https://segmentfault.com/a/1190000019828246)
