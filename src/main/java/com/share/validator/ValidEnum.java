@@ -9,10 +9,10 @@ import java.lang.annotation.Target;
 
 /**
  * 枚举值校验
- *故意去掉 ElementType.PARAMETER ，演示此注解用在方法入参中时不会生效
+ *
  * @author guozhe
  */
-@Target({ElementType.FIELD, ElementType.METHOD, ElementType.TYPE_USE})
+@Target({ElementType.FIELD, ElementType.METHOD, ElementType.TYPE_USE, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = {EnumValidator.class})
 public @interface ValidEnum {

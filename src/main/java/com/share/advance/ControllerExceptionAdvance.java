@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolationException;
@@ -37,6 +38,15 @@ public class ControllerExceptionAdvance {
     @ResponseStatus(HttpStatus.OK)
     public TransOutput methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e, HttpServletRequest request) {
         String formatErrorMsg = ValidatorUtil.formatErrorMsg(e.getBindingResult().getFieldErrors());
+        log.error("控制层接口抛出参数校验异常，URL={}，异常信息={}", request.getRequestURI(), formatErrorMsg, e);
+        return new TransOutput(TransOutput.FAILED_CODE, formatErrorMsg);
+    }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public TransOutput methodArgumentTypeMismatchExceptionHandler(MethodArgumentTypeMismatchException e, HttpServletRequest request) {
+        String formatErrorMsg = e.getMessage();
         log.error("控制层接口抛出参数校验异常，URL={}，异常信息={}", request.getRequestURI(), formatErrorMsg, e);
         return new TransOutput(TransOutput.FAILED_CODE, formatErrorMsg);
     }

@@ -1,11 +1,11 @@
 package com.share.validator;
 
 import com.google.common.base.Joiner;
+import com.share.util.EnumUtil;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.util.Arrays;
-import java.util.stream.Collectors;
+import java.util.Set;
 
 /**
  * 枚举值校验
@@ -26,15 +26,14 @@ public class EnumValidator implements ConstraintValidator<ValidEnum, String> {
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-
         if (null == value) {
             return true;
         }
-        Enum[] enumConstants = enumClass.getEnumConstants();
-        if (Arrays.stream(enumConstants).map(Enum::name).collect(Collectors.toSet()).contains(value)) {
+        Set<String> names = EnumUtil.listAllNames(enumClass);
+        if (names.contains(value)) {
             return true;
         }
-        MyConstraintUtil.changeConstraintMessageTemplate(context, "正确的值包括：【" + Joiner.on(",").join(enumConstants) + "】");
+        MyConstraintUtil.changeConstraintMessageTemplate(context, "正确的值包括：【" + Joiner.on(",").join(names) + "】");
         return false;
     }
 
