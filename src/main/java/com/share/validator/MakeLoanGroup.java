@@ -6,22 +6,22 @@ package com.share.validator;
  */
 public interface MakeLoanGroup {
     /**
-     * 任买科技
+     * 渠道A
      */
-    interface Rm {
+    interface RequestSourceA {
 
     }
 
     /**
-     * 车贷
+     * 渠道B
      */
-    interface FinupCar {
+    interface RequestSourceB {
     }
 
     /**
-     * 任意花
+     * 渠道C
      */
-    interface Ryh {
+    interface RequestSourceC {
     }
 
 }

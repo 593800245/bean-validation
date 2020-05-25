@@ -7,15 +7,14 @@ import java.util.Arrays;
 /**
  * @author: fengpeng
  * @date: 2017/12/11  下午7:48
- *
- * 校验回款主体方法
+ * <p>
+ * 校验
  */
-public class CollectionCompanyValidator implements ConstraintValidator<ValidCollectionCompany,String> {
+public class CollectionCompanyValidator implements ConstraintValidator<ValidCollectionCompany, String> {
     /**
-     * 所有的回款主体
+     * 所有的值
      */
-    private static final String[] ALL_STATUS = {"FINUP_GROUP", "BOHAI_TRUST", "BOHAI_TRUST_ZRB",
-            "WAIMAO_TRUST", "BAIRONG_TRUST"};
+    private static final String[] ALL_STATUS = {"AAAAA", "BBBBB", "CCCCC", "DDDDD", "EEEEE"};
 
     @Override
     public void initialize(ValidCollectionCompany validCollectionCompany) {
@@ -25,7 +24,7 @@ public class CollectionCompanyValidator implements ConstraintValidator<ValidColl
     @Override
     public boolean isValid(String value, ConstraintValidatorContext constraintValidatorContext) {
         //如果是空，返回true，因为回款主体可以为空
-        if (value==null || 0==value.length()){
+        if (value == null || 0 == value.length()) {
             return true;
         }
         return Arrays.asList(ALL_STATUS).contains(value);

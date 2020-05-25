@@ -10,14 +10,14 @@ import java.lang.annotation.Target;
 /**
  * @author: fengpeng
  * @date: 2017/12/7  下午2:20
- *
- * 校验回款主体
+ * <p>
+ * 校验
  */
 @Target({ElementType.FIELD, ElementType.METHOD, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = {CollectionCompanyValidator.class})
 public @interface ValidCollectionCompany {
-    String message() default "不正确的回款主体，应该是FINUP_GROUP - 凡普互金; BOHAI_TRUST - 渤海信托 ; BOHAI_TRUST_ZRB - 渤海信托真融宝 ; WAIMAO_TRUST - 外贸信托 ; BAIRONG_TRUST - 百融小贷 其中之一";
+    String message() default "不正确的值，应该是\"AAAAA\", \"BBBBB\", \"CCCCC\", \"DDDDD\", \"EEEEE\" 其中之一";
 
     Class<?>[] groups() default {};
 
